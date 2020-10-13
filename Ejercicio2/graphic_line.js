@@ -1,4 +1,3 @@
-
 let data = getDataLine()
 
 data = data.map(function (lineSerie) {
@@ -8,10 +7,9 @@ data = data.map(function (lineSerie) {
     return lineSerie;
 })
 
-console.log(data)
 Highcharts.chart('line', {
     title: {
-        text: 'Devo Challenge Line Chart'
+        text: 'Devo Line Chart'
     },
     xAxis: {
         type: 'datetime',

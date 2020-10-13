@@ -8,18 +8,18 @@ getDataFromUrls()
 
 function getDataFromUrls() {
     let url = 'http://s3.amazonaws.com/logtrust-static/test/test/data1.json'
-    $.getJSON(url, function (data) {
+    $.getJSON(url, function(data) {
         processDataSerie1(data); // JSON result in `data` variable
     })
 
     let proxy = 'https://cors-anywhere.herokuapp.com/' // proxy to bypass CORS 
     url = 'http://s3.amazonaws.com/logtrust-static/test/test/data2.json'
-    $.getJSON(proxy + url, function (data) {
+    $.getJSON(proxy + url, function(data) {
         processDataSerie2(data); // JSON result in `data` variable
     })
 
     url = 'http://s3.amazonaws.com/logtrust-static/test/test/data3.json'
-    $.getJSON(proxy + url, function (data) {
+    $.getJSON(proxy + url, function(data) {
         processDataSerie3(data); // JSON result in `data` variable
     })
 }
@@ -62,8 +62,6 @@ function processDataSerie3(data) {
         normaliced_key = normaliceKey(element.raw.split('#')[1])
         normaliced_date = new Date(dateRegex.exec(element.raw)[0]).getTime()
         normaliced_value = element.val
-        date_dictionary = {}
-        old_value = 0
         fillLine(normaliced_key, normaliced_date, normaliced_value)
         fillPie(normaliced_key, normaliced_value)
     }
@@ -126,4 +124,3 @@ function getDataPie() {
 }
 
 exports = { getDataLine, getDataPie }
-
