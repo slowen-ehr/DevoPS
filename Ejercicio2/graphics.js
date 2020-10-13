@@ -1,26 +1,26 @@
 $.ajaxSetup({
     async: false
-});
+})
 
-let data_dictionary = []
+let line_dictionary = []
 let pie_dictionary = {}
 getDataFromUrls()
 
 function getDataFromUrls() {
+    let proxy = 'https://cors-anywhere.herokuapp.com/' // proxy to bypass CORS 
     let url = 'http://s3.amazonaws.com/logtrust-static/test/test/data1.json'
     $.getJSON(url, function(data) {
-        processDataSerie1(data); // JSON result in `data` variable
+        processDataSerie1(data)
     })
 
-    let proxy = 'https://cors-anywhere.herokuapp.com/' // proxy to bypass CORS 
     url = 'http://s3.amazonaws.com/logtrust-static/test/test/data2.json'
     $.getJSON(proxy + url, function(data) {
-        processDataSerie2(data); // JSON result in `data` variable
+        processDataSerie2(data)
     })
 
     url = 'http://s3.amazonaws.com/logtrust-static/test/test/data3.json'
     $.getJSON(proxy + url, function(data) {
-        processDataSerie3(data); // JSON result in `data` variable
+        processDataSerie3(data)
     })
 }
 
@@ -70,14 +70,14 @@ function processDataSerie3(data) {
 function fillLine(key, date, value) {
     let date_dictionary = {}
     let old_value = 0
-    if (key in data_dictionary) {
-        date_dictionary = data_dictionary[key]
+    if (key in line_dictionary) {
+        date_dictionary = line_dictionary[key]
         if (date in date_dictionary) {
             old_value = date_dictionary[date]
         }
     }
     date_dictionary[date] = old_value + value
-    data_dictionary[key] = date_dictionary
+    line_dictionary[key] = date_dictionary
 }
 
 function fillPie(key, value) {
@@ -108,7 +108,7 @@ function convertLine(obj) {
 }
 
 function getDataLine() {
-    return convertLine(data_dictionary)
+    return convertLine(line_dictionary)
 }
 
 function convertPie(obj) {

@@ -1,10 +1,10 @@
 let data = getDataLine()
 
-data = data.map(function (lineSerie) {
-    lineSerie.data.sort(function (a, b) {
+data = data.map(function(lineSeries) {
+    lineSeries.data.sort(function(a, b) {
         return a.x.getTime() - b.x.getTime()
     })
-    return lineSerie;
+    return lineSeries;
 })
 
 Highcharts.chart('line', {
